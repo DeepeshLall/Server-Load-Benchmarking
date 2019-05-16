@@ -1,14 +1,14 @@
 # server_client_management
-This is a repository made for study and implemetation of server client connection improvement method.\\
+This is a repository made for study and implemetation of server client connection improvement method.\
 
-Contents of the repository:-
-1.) Apache benchmark and ping
-    The file contains the required commands 
-    Apache bench mark
-	    ab -k -n 500000 -c 1025 http://127.0.0.1/
-    Ping
-	    sudo ping -n -w 12000 -l 67000 localhost
-    The statistics are contained in the files named ping_statistics and apache_statistics.
+Contents of the repository:-\
+1.) Apache benchmark and ping\
+    The file contains the required commands\ 
+    Apache bench mark\
+	    ab -k -n 500000 -c 1025 http://127.0.0.1/\
+    Ping\
+	    sudo ping -n -w 12000 -l 67000 localhost\
+    The statistics are contained in the files named ping_statistics and apache_statistics.\
     
 2.) Server Client  
     This folder contains the codes and executables of activating chat-bot server and client server interaction.
