@@ -1,0 +1,5 @@
+1. apache bench mark
+	ab -k -n 500000 -c 1025 http://127.0.0.1/
+
+2. ping
+	sudo ping -n -w 12000 -l 67000 localhost 
