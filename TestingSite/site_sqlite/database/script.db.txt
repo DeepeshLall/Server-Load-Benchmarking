@@ -1,0 +1,27 @@
+chmod 766 student_search.sqlite
+
+sqlite3 student_search.sqlite
+
+CREATE TABLE student(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+username        TEXT	NOT NULL,
+email  		TEXT	NOT NULL,
+password	TEXT    NOT NULL,
+age 		INTEGER	NOT NULL,
+gender		TEXT	NOT NULL,
+contact_number	INTEGER	NOT NULL,
+address		CHAR(50),     
+permission	INTEGER NOT NULL
+);
+
+
+.tables
+
+.schema student
+
+.headers ON
+.mode column
+
+PRAGMA table_info(student);
+
+.backup database.db
