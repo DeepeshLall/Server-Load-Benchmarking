@@ -1,0 +1,21 @@
+This file will contain the description of all the files contained in the folder :-
+
+	i) For testing, we use the following parameters:
+			a) No. of threads (users)
+			b) Ramp-up Time
+			c) Loop Count
+
+	ii) For the HTTP request we use the following server address :-
+			http://localhost/summerProject/TestingSite/site_sqlite/login/index.html
+
+	iii) Now, we use the graph results:
+			The graph also analyses various parameters.
+			We would be noting down the average time:
+				No of threads = 1000    Average = 1
+				No of threads = 2000    Average = 2
+				No of threads = 3000    Average = 2
+				No of threads = 5000    Average = 1
+				No of threads = 10000   Average = 2
+				No of threads = 50000   Average = 2
+				No of threads = 100000  Average = 13
+				No of threads = 500000  Average = 50
