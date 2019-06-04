@@ -1,17 +1,13 @@
 <?php
 	if($_SERVER['REQUEST_METHOD']=="POST"){
 
-		$email = stripcslashes($_POST['email']);
+		$username = stripcslashes($_POST['username']);
 		
-		if(!empty($email) && !empty($_POST['password'])){
+		if(!empty($username) && !empty($_POST['password'])){
 			
 			include("../inc/init.inc.php");
 
-			if(valid_credentials($dbc,$email,$_POST['password'])){
-				$query = "SELECT username FROM student WHERE email='".$email."'";
-				$res = $dbc->query($query);
-				$row = $res->fetchArray();
-				$username = $row['username'];
+			if(valid_credentials($dbc,$username,$_POST['password'])){
 				$_SESSION['username']=$username;
 				header('location:../profile/index.php');
 				exit();

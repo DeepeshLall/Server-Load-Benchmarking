@@ -14,10 +14,10 @@ function user_exist($dbc,$username){
 	}
 }
 
-function  valid_credentials($dbc,$email,$password){
+function  valid_credentials($dbc,$username,$password){
 	$password = sha1($password);
 
-	$query = "SELECT count(id) as count FROM student WHERE email='".$email."' AND password='".$password."'";
+	$query = "SELECT count(id) as count FROM student WHERE username='".$username."' AND password='".$password."'";
 	// echo $query;
 	$result = $dbc->query($query);
 	$count = $result->fetchArray();

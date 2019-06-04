@@ -14,6 +14,8 @@ try{
 	}
 	$dbc = new MyDB;
 
+	$dbc->busyTimeout(50000);
+
 	include('user.inc.php');
 	session_start();
 	return $dbc;

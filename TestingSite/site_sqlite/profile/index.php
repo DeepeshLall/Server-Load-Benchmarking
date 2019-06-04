@@ -2,6 +2,8 @@
 	include("../inc/init.inc.php");
 
 	if(isset($_POST['logout_btn'])){
+		$dbc->close();
+		unset($dbc);
 		session_destroy();
 		header("location: ../index.html");
 		exit();
@@ -9,10 +11,11 @@
 
 	$username = $_SESSION["username"];
 
-	$query = "SELECT username,age,gender,contact_number,address,permission FROM student WHERE username='".$username."'";
+	$query = "SELECT email,age,gender,contact_number,address,permission FROM student WHERE username='".$username."'";
 	$data = $dbc->query($query);
 	$row = $data->fetchArray();
 	
+	$email = $row['email'];
 	$age = $row['age'];
 	$gender = $row['gender'];
 	$contact_number = $row['contact_number'];
@@ -45,6 +48,11 @@
 		<tr>
 			<td><b>Username:</b></td> 
 			<td><?php echo $username; ?></td>
+		</tr>
+		<br><br> 
+		<tr>
+			<td><b>Email:</b></td> 
+			<td><?php echo $email; ?></td>
 		</tr>
 		<br><br> 
 		<tr>
@@ -104,9 +112,10 @@
 				$srow = $search_object->fetchArray();
 				if($srow['count']>0){
 					echo $search_username." is present in the network.";
-					$search_object2 = $dbc->query("SELECT id,age,gender,contact_number,address,permission FROM student WHERE username='".$search_username."'");
+					$search_object2 = $dbc->query("SELECT id,email,age,gender,contact_number,address,permission FROM student WHERE username='".$search_username."'");
 					$search_data = $search_object2->fetchArray();
 					$searched_id = $search_data['id'];
+					$searched_email = $search_data['email'];
 					$searched_age = $search_data['age'];
 					$searched_gender = $search_data['gender'];
 					if($searched_gender == 'M'){
@@ -121,6 +130,7 @@
 					if($search_permission == '1'){
 						echo "And his Details are: <br><br>
 						Student ID : ".$searched_id."<br><br>
+						Email : ".$searched_email."<br><br>
 						Age: ".$searched_age."<br><br>
 						Gender: ".$searched_gender." <br><br>
 						Contact Number: ".$searched_contact_number."<br><br>
