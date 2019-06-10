@@ -37,25 +37,34 @@ do
 	sum_1="$(grep "bzm - Concurrency Thread Group 1-$i" "$file" | cut --complement -d "," -f1,5,7,9 | grep "$page_1" | awk -F "," -v accum_input="$1" -v accum_page="$page_1" '($9=accum_input)&&($10=accum_page){sum+=$11}; END {print sum}')"
 	ping_1="$(grep "bzm - Concurrency Thread Group 1-$i" "$file" | cut --complement -d "," -f1,5,7,9 | grep "$page_1" | awk -F "," -v accum_input="$1" -v accum_page="$page_1" '($9=accum_input)&&($10=accum_page){print $11}' | wc -l )"
 	echo "sum is "$sum_1 " & ping is " $ping_1
-	sum_url_1=$(($sum_url_1+$sum_1))
-	ping_url_1=$(($ping_url_1+$ping_1))
-	echo "$i,1,$(echo $sum_1/$ping_1 | bc -l)" >> $dest_1
+	if [ "$sum_1" != "" ]
+	then
+		sum_url_1=$(($sum_url_1+$sum_1))
+		ping_url_1=$(($ping_url_1+$ping_1))
+		echo "$i,1,$(echo $sum_1/$ping_1 | bc -l)" >> $dest_1
+	fi
 
 	echo "----------------- Page 2 -----------------"
 	sum_2="$(grep "bzm - Concurrency Thread Group 1-$i" "$file" | cut --complement -d "," -f1,5,7,9 | grep "$page_2" | awk -F "," -v accum_input="$1" -v accum_page="$page_2" '($9=accum_input)&&($10=accum_page){sum+=$11}; END {print sum}')"
 	ping_2="$(grep "bzm - Concurrency Thread Group 1-$i" "$file" | cut --complement -d "," -f1,5,7,9 | grep "$page_2" | awk -F "," -v accum_input="$1" -v accum_page="$page_2" '($9=accum_input)&&($10=accum_page){print $11}' | wc -l )"
 	echo "sum is "$sum_2 " & ping is " $ping_2
-	sum_url_2=$(($sum_url_2+$sum_2))
-	ping_url_2=$(($ping_url_2+$ping_2))
-	echo "$i,2,$(echo $sum_2/$ping_2 | bc -l)" >> $dest_1
-
+	if [ "$sum_2" != "" ]
+	then
+		sum_url_2=$(($sum_url_2+$sum_2))
+		ping_url_2=$(($ping_url_2+$ping_2))
+		echo "$i,2,$(echo $sum_2/$ping_2 | bc -l)" >> $dest_1
+	fi
+	
 	echo "----------------- Page 3 -----------------"
 	sum_3="$(grep "bzm - Concurrency Thread Group 1-$i" "$file" | cut --complement -d "," -f1,5,7,9 | grep "$page_3" | awk -F "," -v accum_input="$1" -v accum_page="$page_3" '($9=accum_input)&&($10=accum_page){sum+=$11}; END {print sum}')"
 	ping_3="$(grep "bzm - Concurrency Thread Group 1-$i" "$file" | cut --complement -d "," -f1,5,7,9 | grep "$page_3" | awk -F "," -v accum_input="$1" -v accum_page="$page_3" '($9=accum_input)&&($10=accum_page){print $11}' | wc -l )"
 	echo "sum is "$sum_3 " & ping is " $ping_3
-	sum_url_3=$(($sum_url_3+$sum_3))
-	ping_url_3=$(($ping_url_3+$ping_3))
-	echo "$i,3,$(echo $sum_3/$ping_3 | bc -l)" >> $dest_1
+	if [ "$sum_3" != "" ]
+	then
+		sum_url_3=$(($sum_url_3+$sum_3))
+		ping_url_3=$(($ping_url_3+$ping_3))
+		echo "$i,3,$(echo $sum_3/$ping_3 | bc -l)" >> $dest_1
+	fi
 
 	echo "Total Average latenct time for each user: $(echo $sum_1/$ping_1+$sum_2/$ping_2+$sum_3/$ping_3 | bc -l)" 
 	echo "$i,$(echo $sum_1/$ping_1+$sum_2/$ping_2+$sum_3/$ping_3 | bc -l)" >> $dest_2
